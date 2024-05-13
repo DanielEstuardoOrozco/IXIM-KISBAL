@@ -1,0 +1,43 @@
+module.exports = {
+    
+    friendlyName: 'Find Product Price',
+
+    description: 'Find a product Price.',
+
+    exits: {
+        ok: {
+            responseType: 'ok'
+        },
+        serverError: {
+            responseType: 'serverError'
+        }
+    },
+
+    fn: async ( _ , exits, env) => {
+
+        let { serverError, ok } = exits;
+        let { req } = env;
+        let sendError = sails.helpers.sendError;
+        
+        try {
+            
+            let productPrice = {};
+
+            await sails.getDatastore().transaction(async (db) => {
+                
+                productPrice = await sails.helpers.repository.findOne(ProductPrice, {id: req.param("id"), company: req.user.company, state: 1}, db, true);
+
+            });
+            
+            return sails.helpers.sendSuccess(ok)('Message.FindSuccessfully', { productProduct: productPrice.toJSON()});
+
+        } catch (error) {
+
+            sails.helpers.loggingError(error, req.traceId);
+            return sendError(serverError)(error.raw && error?.raw.code ? error.raw : { code: sails.config.constants.error.INTERNAL_ERROR, message: 'Error.Message.InternalError' })
+
+        }
+
+    }
+
+};

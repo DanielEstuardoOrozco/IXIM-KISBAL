@@ -1,0 +1,21 @@
+{
+	"Message.SuccessfullyAuthenticated": "Successfully authenticated",
+	"Message.EntityCreatedSuccessfully": "The entity was created successfully",
+	"Message.SuccessfullyConfirmed": "Successfully confirmed",
+	"Message.SuccessfullyConfiguredPassword": "Password configured successfully",
+	"Message.Ok": "ok",
+	"Message.EmailSent": "Email sent! Please give it a minute, and check your spam folder if you can't find the email. If you don't receive an email, it is possible that no account exists for this email.",
+	"Error.Message.MissingInvalidParams": "The server could not fulfill this request due to 1 missing or invalid parameter",
+	"Error.Message.RequiredNotDefined": "is required, but it was not defined",
+	"Error.Message.EntityNotFoundToConfirm": "The specified entity was not found or has already been confirmed",
+	"Error.Message.EntityNotFound": "The specified entity was not found",
+	"Error.Message.PasswordMismatch": "The password does not match",
+	"Error.Message.InvalidToken": "Invalid token",
+	"Error.Message.InvalidCredentials": "Invalid credentials, entityName or password is wrong",
+	"Error.Message.InternalError": "There was an error. Please try again later",
+	"Active": "Active",
+	"Inactive": "Inactive",
+	"Error.Message.MissingHeaderRequest": "The field 'CodigoServicio' is required, but it was not defined",
+	"Error.Message.MissingContentRequest": "The field 'bloqueContenido' is required, but it was not defined",
+	"Error.Message.InvalidMethodRequest": "The specified method in 'CodigoServicio' is invalid"
+}
