@@ -83,4 +83,11 @@ module.exports.routes = {
     'GET /customer/:id':     'customer/find',
     'PUT /customer/:id':     'customer/update',
     'DELETE /customer/:id':  'customer/delete',
+
+    /* Warehouse Routes */
+    'POST /warehouse':        'warehouse/create',
+    'GET /warehouse':         'warehouse/find-all',
+    'GET /warehouse/:id':     'warehouse/find',
+    'PUT /warehouse/:id':     'warehouse/update',
+    'DELETE /warehouse/:id':  'warehouse/delete',
 };
