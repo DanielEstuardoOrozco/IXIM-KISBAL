@@ -71,10 +71,10 @@ module.exports = {
         },
     },
 
-    beforeCreate: (product, next) => {
+    beforeCreate: (unitOfMeasure, next) => {
 
-        product.state = 1;
-        product.updatedByUserId = product.createdByUserId;
+        unitOfMeasure.state = 1;
+        unitOfMeasure.updatedByUserId = unitOfMeasure.createdByUserId;
         next();
 
     },

@@ -1,5 +1,5 @@
 /**
- * ProductPrice.js
+ * Customer.js
  *
  * @description :: A model definition represents a database table/collection of `documents`.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -7,37 +7,45 @@
 
 module.exports = {
 
-    tableName: 'ProductPrices',
+    tableName: 'Customers',
 
     primaryKey: 'id',
 
     attributes: {
         id: {
             type: 'number',
-            columnName: 'IdPrice',
+            columnName: 'IdCustomer',
             autoIncrement: true,
         },
-        price: {
-            type: 'number',
-            columnType: 'float',
-            columnName: 'Price',
-            required: true
-        },
-        priceType: {
+        customerName: {
             type: 'string',
-            columnName: 'PriceType',
+            columnName: 'CustomerName',
+            required: true,
+            maxLength: 255
+        },
+        contactInfo: {
+            type: 'string',
+            columnName: 'ContactInfo',
+            allowNull: true
+        },
+        phoneNumber: {
+            type: 'string',
+            columnName: 'PhoneNumber',
             allowNull: true,
             maxLength: 50
         },
-        effectiveDate: {
-            type: 'ref',
-            columnType: 'datetime',
-            columnName: 'EffectiveDate',
+        email: {
+            type: 'string',
+            columnName: 'Email',
+            allowNull: true,
+            isEmail: true,
+            maxLength: 255
         },
-        expiryDate: {
-            type: 'ref',
-            columnType: 'datetime',
-            columnName: 'ExpiryDate',
+        aditionalInfo: {
+            type: 'string',
+            columnName: 'AditionalInfo',
+            allowNull: true,
+            maxLength: 255
         },
         createdAt: {
             type: 'ref',
@@ -47,7 +55,8 @@ module.exports = {
         },
         createdByUserId: {
             type: 'number',
-            columnName: 'CreatedByUserId'
+            columnName: 'CreatedByUserId',
+            allowNull: true
         },
         updatedAt: {
             type: 'ref',
@@ -57,7 +66,8 @@ module.exports = {
         },
         updatedByUserId: {
             type: 'number',
-            columnName: 'UpdatedByUserId'
+            columnName: 'UpdatedByUserId',
+            allowNull: true
         },
         deletedAt: {
             type: 'ref',
@@ -81,22 +91,12 @@ module.exports = {
             required: true,
             columnName: 'IdCompany'
         },
-        product: {
-            model: 'product',
-            required: true,
-            columnName: 'IdProduct'
-        },
-        unitOfMeasure: {
-            model: 'unitsOfMeasure',
-            required: true,
-            columnName: 'IdUoM'
-        },
     },
 
-    beforeCreate: (productPrice, next) => {
+    beforeCreate: (customer, next) => {
 
-        productPrice.state = 1;
-        productPrice.updatedByUserId = productPrice.createdByUserId;
+        customer.state = 1;
+        customer.updatedByUserId = customer.createdByUserId;
         next();
 
     },

@@ -76,4 +76,11 @@ module.exports.routes = {
     'GET /productPrice/:id':     'productPrice/find',
     'PUT /productPrice/:id':     'productPrice/update',
     'DELETE /productPrice/:id':  'productPrice/delete',
+
+    /* Customer Routes */
+    'POST /customer':        'customer/create',
+    'GET /customer':         'customer/find-all',
+    'GET /customer/:id':     'customer/find',
+    'PUT /customer/:id':     'customer/update',
+    'DELETE /customer/:id':  'customer/delete',
 };

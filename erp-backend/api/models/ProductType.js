@@ -71,10 +71,10 @@ module.exports = {
         },
     },
 
-    beforeCreate: (product, next) => {
+    beforeCreate: (productType, next) => {
 
-        product.state = 1;
-        product.updatedByUserId = product.createdByUserId;
+        productType.state = 1;
+        productType.updatedByUserId = productType.createdByUserId;
         next();
 
     },

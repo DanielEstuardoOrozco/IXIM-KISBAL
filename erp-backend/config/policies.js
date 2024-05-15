@@ -57,4 +57,12 @@ module.exports.policies = {
     'delete':     ['Init', 'UserAuth'],
   },
 
+  CustomerController: {
+    'create':     ['Init', 'UserAuth'],
+    'find':       ['Init', 'UserAuth'],
+    'find-all':   ['Init', 'UserAuth'],
+    'update':     ['Init', 'UserAuth'],
+    'delete':     ['Init', 'UserAuth'],
+  },
+
 };
