@@ -1,43 +1,32 @@
 /**
- * ProductPrice.js
+ * Role.js
  *
- * @description :: A model definition represents a database table/collection of `productPrice`.
+ * @description :: A model definition represents a database table/collection of `role`.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
 module.exports = {
 
-    tableName: 'ProductPrices',
+    tableName: 'Roles',
 
     primaryKey: 'id',
 
     attributes: {
         id: {
             type: 'number',
-            columnName: 'IdPrice',
+            columnName: 'IdRole',
             autoIncrement: true,
         },
-        price: {
-            type: 'number',
-            columnType: 'float',
-            columnName: 'Price',
-            required: true
-        },
-        priceType: {
+        roleName: {
             type: 'string',
-            columnName: 'PriceType',
-            allowNull: true,
-            maxLength: 50
+            columnName: 'RoleName',
+            required: true,
+            maxLength: 255
         },
-        effectiveDate: {
-            type: 'ref',
-            columnType: 'datetime',
-            columnName: 'EffectiveDate',
-        },
-        expiryDate: {
-            type: 'ref',
-            columnType: 'datetime',
-            columnName: 'ExpiryDate',
+        description: {
+            type: 'string',
+            columnName: 'Description',
+            allowNull: true
         },
         createdAt: {
             type: 'ref',
@@ -47,7 +36,8 @@ module.exports = {
         },
         createdByUserId: {
             type: 'number',
-            columnName: 'CreatedByUserId'
+            columnName: 'CreatedByUserId',
+            allowNull: true
         },
         updatedAt: {
             type: 'ref',
@@ -57,7 +47,8 @@ module.exports = {
         },
         updatedByUserId: {
             type: 'number',
-            columnName: 'UpdatedByUserId'
+            columnName: 'UpdatedByUserId',
+            allowNull: true
         },
         deletedAt: {
             type: 'ref',
@@ -81,22 +72,12 @@ module.exports = {
             required: true,
             columnName: 'IdCompany'
         },
-        product: {
-            model: 'product',
-            required: true,
-            columnName: 'IdProduct'
-        },
-        unitOfMeasure: {
-            model: 'unitsOfMeasure',
-            required: true,
-            columnName: 'IdUoM'
-        },
     },
 
-    beforeCreate: (productPrice, next) => {
+    beforeCreate: (customer, next) => {
 
-        productPrice.state = 1;
-        productPrice.updatedByUserId = productPrice.createdByUserId;
+        customer.state = 1;
+        customer.updatedByUserId = customer.createdByUserId;
         next();
 
     },

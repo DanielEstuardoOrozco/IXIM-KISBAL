@@ -1,8 +1,8 @@
 module.exports = {
     
-    friendlyName: 'Find All System User',
+    friendlyName: 'Find Role',
 
-    description: 'Find all System User.',
+    description: 'Find a role.',
 
     exits: {
         ok: {
@@ -21,28 +21,15 @@ module.exports = {
         
         try {
             
-            let users = {};
-            let pageSize = req.pageSize;
-            let currentPage = req.currentPage;
+            let role = {};
 
             await sails.getDatastore().transaction(async (db) => {
                 
-                users = await sails.helpers.repository.find(User, {company: req.user.company, state: 1}, db, currentPage, pageSize);
+                role = await sails.helpers.repository.findOne(Role, {id: req.param("id"), company: req.user.company, state: 1}, db, true);
 
             });
             
-            return sails.helpers.sendSuccess(ok)(
-                'Message.FindSuccessfully', 
-                { 
-                    user: users.data
-                },
-                {
-                    currentPage: currentPage,
-                    pageSize: pageSize,
-                    totalPages: Math.ceil(users.total / pageSize),
-                    totalItems: users.total
-                }
-            );
+            return sails.helpers.sendSuccess(ok)('Message.FindSuccessfully', { role: role.toJSON()});
 
         } catch (error) {
 

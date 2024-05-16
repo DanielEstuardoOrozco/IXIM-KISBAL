@@ -1,7 +1,7 @@
 /**
  * UnitOfMeasure.js
  *
- * @description :: A model definition represents a database table/collection of `documents`.
+ * @description :: A model definition represents a database table/collection of `unitOfMeasure`.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 

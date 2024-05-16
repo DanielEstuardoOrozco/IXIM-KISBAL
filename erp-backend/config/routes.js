@@ -104,4 +104,11 @@ module.exports.routes = {
     'GET /provider/:id':     'provider/find',
     'PUT /provider/:id':     'provider/update',
     'DELETE /provider/:id':  'provider/delete',
+
+    /* Role Routes */
+    'POST /role':        'role/create',
+    'GET /role':         'role/find-all',
+    'GET /role/:id':     'role/find',
+    'PUT /role/:id':     'role/update',
+    'DELETE /role/:id':  'role/delete',
 };

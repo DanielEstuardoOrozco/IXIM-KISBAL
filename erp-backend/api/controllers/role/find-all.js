@@ -1,8 +1,8 @@
 module.exports = {
     
-    friendlyName: 'Find All Product Type',
+    friendlyName: 'Find All Role',
 
-    description: 'Find all product type.',
+    description: 'Find all role.',
 
     exits: {
         ok: {
@@ -21,26 +21,26 @@ module.exports = {
         
         try {
             
-            let productsType = {};
+            let roles = {};
             let pageSize = req.pageSize;
             let currentPage = req.currentPage;
 
             await sails.getDatastore().transaction(async (db) => {
                 
-                productsType = await sails.helpers.repository.find(ProductType, {company: req.user.company, state: 1}, db, currentPage, pageSize);
+                roles = await sails.helpers.repository.find(Role, {company: req.user.company, state: 1}, db, currentPage, pageSize);
 
             });
             
             return sails.helpers.sendSuccess(ok)(
                 'Message.FindSuccessfully', 
                 { 
-                    productType: productsType.data
+                    role: roles.data
                 },
                 {
                     currentPage: currentPage,
                     pageSize: pageSize,
-                    totalPages: Math.ceil(productsType.total / pageSize),
-                    totalItems: productsType.total
+                    totalPages: Math.ceil(roles.total / pageSize),
+                    totalItems: roles.total
                 }
             );
 

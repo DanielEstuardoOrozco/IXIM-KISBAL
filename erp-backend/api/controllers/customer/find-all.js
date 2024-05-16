@@ -22,8 +22,8 @@ module.exports = {
         try {
             
             let customers = {};
-            let pageSize = req.param("pageSize");
-            let currentPage = req.param("currentPage");
+            let pageSize = req.pageSize;
+            let currentPage = req.currentPage;
 
             await sails.getDatastore().transaction(async (db) => {
                 
