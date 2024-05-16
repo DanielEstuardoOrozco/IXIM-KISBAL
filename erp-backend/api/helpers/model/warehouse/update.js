@@ -7,6 +7,11 @@ module.exports = {
 
 
     inputs: {
+        employeeResponsible: {
+            type: 'number',
+            isInteger: true,
+            required: false
+        },
 
         warehouseName: {
             type: 'string',

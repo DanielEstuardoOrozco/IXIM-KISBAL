@@ -33,9 +33,9 @@ module.exports = {
             let createdUser;
             await sails.getDatastore().transaction(async (db) => {
                 
-                await sails.helpers.validateUnique(User, {email: data.email, company: data.company, state: 1}, db);
+                await sails.helpers.validateUnique(User, { email: data.email, company: data.company, state: 1 }, db);
 
-                await sails.helpers.validateUnique(User, {username: data.username, company: data.company, state: 1}, db);
+                await sails.helpers.validateUnique(User, { username: data.username, company: data.company, state: 1 }, db);
 
                 createdUser = await sails.helpers.repository.create(User, data, db);
             });

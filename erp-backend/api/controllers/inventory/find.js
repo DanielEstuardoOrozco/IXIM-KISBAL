@@ -1,8 +1,8 @@
 module.exports = {
     
-    friendlyName: 'Find Warehouse',
+    friendlyName: 'Find Inventory',
 
-    description: 'Find a warehouse.',
+    description: 'Find a inventory.',
 
     exits: {
         ok: {
@@ -21,15 +21,15 @@ module.exports = {
         
         try {
             
-            let warehouse = {};
+            let inventory = {};
 
             await sails.getDatastore().transaction(async (db) => {
                 
-                warehouse = await sails.helpers.repository.findOne(Warehouse, {id: req.param("id"), company: req.user.company, state: 1}, db, true);
+                inventory = await sails.helpers.repository.findOne(Inventory, {id: req.param("id"), company: req.user.company, state: 1}, db, true);
 
             });
             
-            return sails.helpers.sendSuccess(ok)('Message.FindSuccessfully', { warehouse: warehouse.toJSON()});
+            return sails.helpers.sendSuccess(ok)('Message.FindSuccessfully', { inventory: inventory.toJSON()});
 
         } catch (error) {
 

@@ -2,9 +2,9 @@ const moment = require('moment');
 
 module.exports = {
     
-    friendlyName: 'Delete Warehouse',
+    friendlyName: 'Delete Inventory',
 
-    description: 'Delete a warehouse.',
+    description: 'Delete a inventory.',
 
     exits: {
         ok: {
@@ -23,14 +23,14 @@ module.exports = {
         
         try {
 
-            let deletedWarehouse;
+            let deletedInventory;
             let data = {};
             let id = req.param("id");
 
             await sails.getDatastore().transaction(async (db) => {
 
                 //Validate if exists resource
-                await sails.helpers.validateExists(Warehouse, {id: id, company: req.user.company, state: 1}, db, true);
+                await sails.helpers.validateExists(Inventory, {id: id, company: req.user.company, state: 1}, db, true);
                 
                 data.state = 0;
 
@@ -38,10 +38,10 @@ module.exports = {
 
                 data.deletedAt = moment().format(sails.config.constants.dateUtils.dbFormatDateTime);
 
-                deletedWarehouse = await sails.helpers.repository.updateOne(Warehouse, {id: id}, data, db);
+                deletedInventory = await sails.helpers.repository.updateOne(Inventory, {id: id}, data, db);
             });
             
-            return sails.helpers.sendSuccess(ok)('Message.DeleteSuccessfully', { warehouse: deletedWarehouse.toJSON()});
+            return sails.helpers.sendSuccess(ok)('Message.DeleteSuccessfully', { inventory: deletedInventory.toJSON()});
 
         } catch (error) {
 

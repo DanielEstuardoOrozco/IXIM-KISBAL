@@ -90,4 +90,11 @@ module.exports.routes = {
     'GET /warehouse/:id':     'warehouse/find',
     'PUT /warehouse/:id':     'warehouse/update',
     'DELETE /warehouse/:id':  'warehouse/delete',
+
+    /* Inventory Routes */
+    'POST /inventory':        'inventory/create',
+    'GET /inventory':         'inventory/find-all',
+    'GET /inventory/:id':     'inventory/find',
+    'PUT /inventory/:id':     'inventory/update',
+    'DELETE /inventory/:id':  'inventory/delete',
 };

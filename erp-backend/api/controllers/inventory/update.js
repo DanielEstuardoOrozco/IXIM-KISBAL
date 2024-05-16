@@ -1,8 +1,8 @@
 module.exports = {
 
-    friendlyName: 'Update Warehouse',
+    friendlyName: 'Update Inventory',
 
-    description: 'Update a warehouse.',
+    description: 'Update a inventory.',
 
     inputs: {
         data: {
@@ -28,23 +28,23 @@ module.exports = {
         
         try {
             
-            await sails.helpers.validateModel(sails.helpers.model.warehouse.update, data);
+            await sails.helpers.validateModel(sails.helpers.model.inventory.update, data);
             
-            let updatedWarehouse;
+            let updatedInventory;
             let id = req.param("id");
             await sails.getDatastore().transaction(async (db) => {
 
                 //Validate if exists resource
-                await sails.helpers.validateExists(Warehouse, {id: id, company: req.user.company, state: 1}, db, true);
+                await sails.helpers.validateExists(Inventory, {id: id, company: req.user.company, state: 1}, db, true);
                 
-                await sails.helpers.validateUnique(Warehouse, {warehouseName: data.warehouseName, company: req.user.company, id: {'!=': [id]}, state: 1}, db);
+                await sails.helpers.validateUnique(Inventory, {product: data.product, warehouse: data.warehouse, unitOfMeasure: data.unitOfMeasure, company: data.company, id: {'!=': [id]}, state: 1}, db);
 
                 data.updatedByUserId = req.user.id;
 
-                updatedWarehouse = await sails.helpers.repository.updateOne(Warehouse, {id: id}, data, db);
+                updatedInventory = await sails.helpers.repository.updateOne(Inventory, {id: id}, data, db);
             });
             
-            return sails.helpers.sendSuccess(ok)('Message.UpdateSuccessfully', { warehouse: updatedWarehouse.toJSON()});
+            return sails.helpers.sendSuccess(ok)('Message.UpdateSuccessfully', { inventory: updatedInventory.toJSON()});
 
         } catch (error) {
 

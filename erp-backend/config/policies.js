@@ -73,4 +73,12 @@ module.exports.policies = {
         'delete':   ['Init', 'UserAuth'],
     },
 
+    InventoryController: {
+        'create':   ['Init', 'UserAuth'],
+        'find':     ['Init', 'UserAuth'],
+        'find-all': ['Init', 'UserAuth'],
+        'update':   ['Init', 'UserAuth'],
+        'delete':   ['Init', 'UserAuth'],
+    },
+
 };

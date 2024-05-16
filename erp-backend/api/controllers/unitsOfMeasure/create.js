@@ -36,7 +36,7 @@ module.exports = {
                 data.company = req.user.company;
                 data.createdByUserId = req.user.id;
 
-                await sails.helpers.validateUnique(UnitsOfMeasure, {uomCode: data.uomCode, company: data.company, state: 1}, db);
+                await sails.helpers.validateUnique(UnitsOfMeasure, { uomCode: data.uomCode, company: data.company, state: 1 }, db);
 
                 createdUnitsOfMeasure = await sails.helpers.repository.create(UnitsOfMeasure, data, db);
             });

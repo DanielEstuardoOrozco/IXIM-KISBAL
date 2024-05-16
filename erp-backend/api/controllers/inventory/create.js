@@ -1,8 +1,8 @@
 module.exports = {
 
-    friendlyName: 'Create Product Price',
+    friendlyName: 'Create Inventory',
 
-    description: 'Create a new product Price.',
+    description: 'Create a new inventory.',
 
     inputs: {
         data: {
@@ -28,20 +28,20 @@ module.exports = {
         
         try {
             
-            await sails.helpers.validateModel(sails.helpers.model.productPrice.create, data);
+            await sails.helpers.validateModel(sails.helpers.model.inventory.create, data);
             
-            let createdProductPrice;
+            let createdInventory;
             await sails.getDatastore().transaction(async (db) => {
                 
                 data.company = req.user.company;
                 data.createdByUserId = req.user.id;
 
-                await sails.helpers.validateUnique(ProductPrice, { product: data.product, unitOfMeasure: data.unitOfMeasure, company: data.company, state: 1 }, db);
+                await sails.helpers.validateUnique(Inventory, { product: data.product, warehouse: data.warehouse, unitOfMeasure: data.unitOfMeasure, company: data.company, state: 1 }, db);
 
-                createdProductPrice = await sails.helpers.repository.create(ProductPrice, data, db);
+                createdInventory = await sails.helpers.repository.create(Inventory, data, db);
             });
             
-            return sails.helpers.sendSuccess(created)('Message.CreatedSuccessfully', { productPrice: createdProductPrice.toJSON()});
+            return sails.helpers.sendSuccess(created)('Message.CreatedSuccessfully', { inventory: createdInventory.toJSON() });
 
         } catch (error) {
 

@@ -36,7 +36,7 @@ module.exports = {
                 data.company = req.user.company;
                 data.createdByUserId = req.user.id;
 
-                await sails.helpers.validateUnique(ProductType, {name: data.name, company: data.company, state: 1}, db);
+                await sails.helpers.validateUnique(ProductType, { name: data.name, company: data.company, state: 1 }, db);
 
                 createdProductType = await sails.helpers.repository.create(ProductType, data, db);
             });
