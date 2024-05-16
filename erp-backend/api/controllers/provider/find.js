@@ -1,8 +1,8 @@
 module.exports = {
     
-    friendlyName: 'Find Product Price',
+    friendlyName: 'Find Provider',
 
-    description: 'Find a product Price.',
+    description: 'Find a provider.',
 
     exits: {
         ok: {
@@ -21,15 +21,15 @@ module.exports = {
         
         try {
             
-            let productPrice = {};
+            let provider = {};
 
             await sails.getDatastore().transaction(async (db) => {
                 
-                productPrice = await sails.helpers.repository.findOne(ProductPrice, {id: req.param("id"), company: req.user.company, state: 1}, db, true);
+                provider = await sails.helpers.repository.findOne(Provider, {id: req.param("id"), company: req.user.company, state: 1}, db, true);
 
             });
             
-            return sails.helpers.sendSuccess(ok)('Message.FindSuccessfully', { productPrice: productPrice.toJSON()});
+            return sails.helpers.sendSuccess(ok)('Message.FindSuccessfully', { provider: provider.toJSON()});
 
         } catch (error) {
 

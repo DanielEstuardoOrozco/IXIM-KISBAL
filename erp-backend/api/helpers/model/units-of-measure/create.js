@@ -1,9 +1,9 @@
 module.exports = {
 
-    friendlyName: 'Create product type input',
+    friendlyName: 'Create unit of measure input',
 
 
-    description: 'Helper to validate model to create product type',
+    description: 'Helper to validate model to create unit of measure',
 
 
     inputs: {

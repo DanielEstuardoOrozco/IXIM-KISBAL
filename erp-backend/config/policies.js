@@ -81,4 +81,12 @@ module.exports.policies = {
         'delete':   ['Init', 'UserAuth'],
     },
 
+    ProviderController: {
+        'create':   ['Init', 'UserAuth'],
+        'find':     ['Init', 'UserAuth'],
+        'find-all': ['Init', 'UserAuth'],
+        'update':   ['Init', 'UserAuth'],
+        'delete':   ['Init', 'UserAuth'],
+    },
+
 };

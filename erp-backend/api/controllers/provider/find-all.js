@@ -1,8 +1,8 @@
 module.exports = {
     
-    friendlyName: 'Find All Product Price',
+    friendlyName: 'Find All Provider',
 
-    description: 'Find all product price.',
+    description: 'Find all provider.',
 
     exits: {
         ok: {
@@ -21,26 +21,26 @@ module.exports = {
         
         try {
             
-            let productPrices = {};
+            let providers = {};
             let pageSize = req.param("pageSize");
             let currentPage = req.param("currentPage");
 
             await sails.getDatastore().transaction(async (db) => {
                 
-                productPrices = await sails.helpers.repository.find(ProductPrice, {company: req.user.company, state: 1}, db, currentPage, pageSize);
+                providers = await sails.helpers.repository.find(Provider, {company: req.user.company, state: 1}, db, currentPage, pageSize);
 
             });
             
             return sails.helpers.sendSuccess(ok)(
                 'Message.FindSuccessfully', 
                 { 
-                    productPrice: productPrices.data
+                    provider: providers.data
                 },
                 {
                     currentPage: currentPage,
                     pageSize: pageSize,
-                    totalPages: Math.ceil(productPrices.total / pageSize),
-                    totalItems: productPrices.total
+                    totalPages: Math.ceil(providers.total / pageSize),
+                    totalItems: providers.total
                 }
             );
 

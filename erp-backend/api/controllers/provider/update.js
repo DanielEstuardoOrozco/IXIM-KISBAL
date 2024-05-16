@@ -1,8 +1,8 @@
 module.exports = {
 
-    friendlyName: 'Update Customer',
+    friendlyName: 'Update Provider',
 
-    description: 'Update a customer.',
+    description: 'Update a provider.',
 
     inputs: {
         data: {
@@ -28,23 +28,23 @@ module.exports = {
         
         try {
             
-            await sails.helpers.validateModel(sails.helpers.model.customer.update, data);
+            await sails.helpers.validateModel(sails.helpers.model.provider.update, data);
             
-            let updatedCustomer;
+            let updatedProvider;
             let id = req.param("id");
             await sails.getDatastore().transaction(async (db) => {
 
                 //Validate if exists resource
-                await sails.helpers.validateExists(Customer, {id: id, company: req.user.company, state: 1}, db, true);
+                await sails.helpers.validateExists(Provider, {id: id, company: req.user.company, state: 1}, db, true);
                 
-                await sails.helpers.validateUnique(Customer, {customerName: data.customerName, company: req.user.company, id: {'!=': [id]}, state: 1}, db);
+                await sails.helpers.validateUnique(Provider, {providerName: data.providerName, company: req.user.company, id: {'!=': [id]}, state: 1}, db);
 
                 data.updatedByUserId = req.user.id;
 
-                updatedCustomer = await sails.helpers.repository.updateOne(Customer, {id: id}, data, db);
+                updatedProvider = await sails.helpers.repository.updateOne(Provider, {id: id}, data, db);
             });
             
-            return sails.helpers.sendSuccess(ok)('Message.UpdateSuccessfully', { customer: updatedCustomer.toJSON()});
+            return sails.helpers.sendSuccess(ok)('Message.UpdateSuccessfully', { provider: updatedProvider.toJSON()});
 
         } catch (error) {
 

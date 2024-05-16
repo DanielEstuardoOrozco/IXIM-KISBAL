@@ -97,4 +97,11 @@ module.exports.routes = {
     'GET /inventory/:id':     'inventory/find',
     'PUT /inventory/:id':     'inventory/update',
     'DELETE /inventory/:id':  'inventory/delete',
+
+    /* Provider Routes */
+    'POST /provider':        'provider/create',
+    'GET /provider':         'provider/find-all',
+    'GET /provider/:id':     'provider/find',
+    'PUT /provider/:id':     'provider/update',
+    'DELETE /provider/:id':  'provider/delete',
 };

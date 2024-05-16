@@ -1,16 +1,16 @@
 module.exports = {
 
-    friendlyName: 'Create customer input',
+    friendlyName: 'Update provider input',
 
 
-    description: 'Helper to validate model to create customer',
+    description: 'Helper to validate model to update provider',
 
 
     inputs: {
 
-        customerName: {
+        providerName: {
             type: 'string',
-            required: true,
+            required: false,
             maxLength: 255
         },
         contactInfo: {
@@ -28,11 +28,22 @@ module.exports = {
             isEmail: true,
             maxLength: 255
         },
-        aditionalInfo: {
+        website: {
             type: 'string',
             required: false,
             maxLength: 255
         },
+        linkedIn: {
+            type: 'string',
+            required: false,
+            maxLength: 255
+        },
+        logo: {
+            type: 'ref',
+            columnType: 'blob',
+            required: false,
+        },
+
     },
 
 

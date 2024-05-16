@@ -2,7 +2,7 @@ module.exports = {
     
     friendlyName: 'Find Customer',
 
-    description: 'Find a Customer.',
+    description: 'Find a customer.',
 
     exits: {
         ok: {

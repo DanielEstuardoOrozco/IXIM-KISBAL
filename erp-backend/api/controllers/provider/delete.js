@@ -2,9 +2,9 @@ const moment = require('moment');
 
 module.exports = {
     
-    friendlyName: 'Delete Customer',
+    friendlyName: 'Delete Provider',
 
-    description: 'Delete a customer.',
+    description: 'Delete a provider.',
 
     exits: {
         ok: {
@@ -23,14 +23,14 @@ module.exports = {
         
         try {
 
-            let deletedCustomer;
+            let deletedProvider;
             let data = {};
             let id = req.param("id");
 
             await sails.getDatastore().transaction(async (db) => {
 
                 //Validate if exists resource
-                await sails.helpers.validateExists(Customer, {id: id, company: req.user.company, state: 1}, db, true);
+                await sails.helpers.validateExists(Provider, {id: id, company: req.user.company, state: 1}, db, true);
                 
                 data.state = 0;
 
@@ -38,10 +38,10 @@ module.exports = {
 
                 data.deletedAt = moment().format(sails.config.constants.dateUtils.dbFormatDateTime);
 
-                deletedCustomer = await sails.helpers.repository.updateOne(Customer, {id: id}, data, db);
+                deletedProvider = await sails.helpers.repository.updateOne(Provider, {id: id}, data, db);
             });
             
-            return sails.helpers.sendSuccess(ok)('Message.DeleteSuccessfully', { customer: deletedCustomer.toJSON()});
+            return sails.helpers.sendSuccess(ok)('Message.DeleteSuccessfully', { provider: deletedProvider.toJSON()});
 
         } catch (error) {
 

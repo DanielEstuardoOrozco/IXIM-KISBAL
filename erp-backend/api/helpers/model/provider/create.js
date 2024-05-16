@@ -1,37 +1,47 @@
 module.exports = {
 
-    friendlyName: 'Create customer input',
+    friendlyName: 'Create provider input',
 
 
-    description: 'Helper to validate model to create customer',
+    description: 'Helper to validate model to create provider',
 
 
     inputs: {
 
-        customerName: {
+        providerName: {
             type: 'string',
             required: true,
             maxLength: 255
         },
         contactInfo: {
             type: 'string',
-            required: false,
+            required: true,
         },
         phoneNumber: {
             type: 'string',
-            required: false,
+            required: true,
             maxLength: 50
         },
         email: {
             type: 'string',
-            required: false,
+            required: true,
             isEmail: true,
             maxLength: 255
         },
-        aditionalInfo: {
+        website: {
             type: 'string',
-            required: false,
+            required: true,
             maxLength: 255
+        },
+        linkedIn: {
+            type: 'string',
+            required: true,
+            maxLength: 255
+        },
+        logo: {
+            type: 'ref',
+            columnType: 'blob',
+            required: false,
         },
     },
 
